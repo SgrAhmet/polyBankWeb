@@ -16,16 +16,24 @@
     font-family: monospace;
     margin-bottom: 50px;
   }
+
+  .h2-text {
+    font-size: 28px;
+    color: #c4834f; /* colors.brown */
+    font-weight: 900;
+    font-family: monospace;
+    margin-bottom: 50px;
+  }
   
   .custom-btn {
     padding: 15px;
     border-radius: 30px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    /* gap: 20px; */
     border-width: 1px;
     border-style: solid;
     cursor: pointer;
@@ -38,6 +46,29 @@
     background-color: #0b3d2e;
     border-color: #0b3d2e;
     color: #8b4513;
+  }
+
+
+  .createRoom-btn {
+    padding: 15px;
+    border-radius: 30px;
+    /* margin-top: 10px; */
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: monospace;
+
+    background-color: #0b3d2e;
+    border-color: #c4834f;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
   
   .brown-btn {
@@ -52,14 +83,21 @@
   
   .room-input {
     width: 80%;
-    border: 1px solid #8b4513;
+    border: 1px solid #c4834f;
     padding: 10px;
     font-size: 20px;
     text-align: center;
     font-family: monospace;
-    color: #8b4513;
+    color: #c4834f;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     outline: none;
+    color: #c4834f;
+    
+    background-color: #0b3d2e;
+    height: 50px;
   }
   
+  .room-input::placeholder{
+    color: #c4834f;
+  }

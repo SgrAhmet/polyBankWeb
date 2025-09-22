@@ -18,14 +18,15 @@ const Enterence = () => {
     window.open(link, "_blank");
   };
 
+
+  const availableLangs = ["tr", "us", "es", "fr", "de"];
+
   const changeLang = () => {
-    if (lang === "tr") {
-      setLang("us");
-      setLanguage("us");
-    } else {
-      setLang("tr");
-      setLanguage("tr");
-    }
+    const currentIndex = availableLangs.indexOf(lang);
+    const nextIndex = (currentIndex + 1) % availableLangs.length; // döngüsel
+    const nextLang = availableLangs[nextIndex];
+    setLang(nextLang);
+    setLanguage(nextLang);
   };
 
   return (

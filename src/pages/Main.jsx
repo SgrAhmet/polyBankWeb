@@ -172,6 +172,18 @@ const Main = () => {
     }
   };
 
+
+  const handleMouseDown = (e, i) => {
+    e.persist();
+    e.target.pressTimer = setTimeout(() => {
+      handleLongMoneyBill(e, i); // uzun basma olayı
+    }, 500); // 500ms basılı tutunca tetiklenir
+  };
+  
+  const handleMouseUp = (e) => {
+    clearTimeout(e.target.pressTimer);
+  };
+
   return (
     <div className="main-container">
       {/* Banner */}
@@ -269,7 +281,10 @@ const Main = () => {
                   className="moneyBill"
                   key={i}
                   onClick={() => handleMoneyBill(e)}
-                  onDoubleClick={() => handleLongMoneyBill(e, i)}
+                  // onDoubleClick={() => handleLongMoneyBill(e, i)}
+                  onMouseDown={(e) => handleMouseDown(e, i)}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
                   // onContextMenu={(ev) => {
                   //   ev.preventDefault();
                   //   handleLongMoneyBill(e, i);
@@ -290,7 +305,10 @@ const Main = () => {
                   className="moneyBill"
                   key={i + 4}
                   onClick={() => handleMoneyBill(e)}
-                  onDoubleClick={() => handleLongMoneyBill(e, i + 4)}
+                  // onDoubleClick={() => handleLongMoneyBill(e, i + 4)}
+                  onMouseDown={(e) => handleMouseDown(e, i+4)}
+                  onMouseUp={handleMouseUp}
+                  onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
                 >
                   <div className="moneyCircle leftTop" />
                   <div className="moneyCircle rightTop" />

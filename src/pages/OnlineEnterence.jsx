@@ -112,12 +112,12 @@ const navigate = useNavigate();
 
   return (
     <div className="online-container">
-      <h1 className="h1-text">
+      <h1 className="h2-text">
         {t("yourRoomId")}:{" "}
         {asyncRoomId === undefined ? t("notCreatedYet") : asyncRoomId}
       </h1>
 
-      <button className="custom-btn green-btn" onClick={createRoom}>
+      <button className="createRoom-btn" onClick={createRoom}>
         <span style={{ color: colors.brown }}>{t("createRoom")}</span>
       </button>
 

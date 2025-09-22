@@ -1,0 +1,74 @@
+.pli-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.36);
+    gap: 10px;
+    overflow: hidden;
+  }
+  
+  .pli-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+  }
+  
+  .pli-name {
+    width: 20%;
+  }
+  
+  .pli-money {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pli-infinity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pli-text {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: monospace;
+    margin-left: 4px;
+  }
+  
+  .pli-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pli-btn {
+    background-color: var(--dark-green, #2e7d32);
+    padding: 7px 9px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pli-btn.pozitif {
+    background-color: var(--light-green, #66bb6a);
+  }
+  
+  .pli-btn.negatif {
+    background-color: var(--red, #e53935);
+  }
+  
+  .pli-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  

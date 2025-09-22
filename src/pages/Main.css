@@ -1,0 +1,266 @@
+:root{
+    --darkGreen: #0b3d2e;
+    --brown: #8b4513;
+    --white: #ffffff;
+    --lightGreen: #9edc9e;
+    --lightBrown: #cfa070;
+    --lightRed: #ff6b6b;
+  }
+  
+  /* Container */
+  .main-container {
+    background-color: var(--darkGreen);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--white);
+    box-sizing: border-box;
+  }
+  
+  /* Banner */
+  .banner {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 2px solid var(--white);
+    box-sizing: border-box;
+  }
+  
+  .h1Text {
+    font-size: 28px;
+    font-weight: 900;
+    font-family: monospace;
+    color: var(--white);
+  }
+  
+  .bannerBtnArea {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .iconBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Modal */
+  .modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 999;
+  }
+  
+  .modalCard {
+    background: var(--darkGreen);
+    width: 90%;
+    max-width: 800px;
+    height: 80vh;
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+  
+  .modalClose {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: var(--lightRed);
+    cursor: pointer;
+  }
+  
+  .modalBody {
+    padding-top: 28px;
+  }
+  
+  /* Modal item */
+  .modalItem {
+    background: var(--brown);
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 12px;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  
+  .modalItemSep {
+    width: 30%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  /* Content (scroll area) */
+  .content {
+    padding-bottom: 20px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+ /* Money area (input + banknotlar) */
+.moneyArea {
+  width: 100%;
+  height: auto;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* Input + ek butonlar */
+.moneyInputArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 60%;
+  max-width: 520px;
+  padding: 10px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid var(--brown);
+  background: transparent;
+  color: var(--white);
+  font-size: 20px;
+  font-family: monospace;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Para fişleri alanı */
+.moneyBillArea {
+  padding: 10px 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.moneyBillRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* Tek bir para fişi */
+.moneyBill {
+  position: relative;
+  background: var(--lightGreen);
+  border: 2px solid var(--lightGreen);
+  width: 23%;
+  height: 85px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 120ms ease;
+}
+
+.moneyBill:hover {
+  transform: translateY(-3px);
+}
+
+/* Dekoratif daireler */
+.moneyCircle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  background: var(--darkGreen);
+}
+
+.moneyCircle.leftTop {
+  left: -10px;
+  top: -10px;
+}
+.moneyCircle.rightTop {
+  right: -10px;
+  top: -10px;
+}
+.moneyCircle.leftBottom {
+  left: -10px;
+  bottom: -10px;
+}
+.moneyCircle.rightBottom {
+  right: -10px;
+  bottom: -10px;
+}
+
+/* Para miktarı yazısı */
+.h4Text {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: monospace;
+  color: var(--black);
+}
+
+/* Küçük ekranlar için */
+@media (max-width: 720px) {
+  .moneyBill {
+    width: 48%;
+    height: 64px;
+  }
+  .input {
+    width: 70%;
+  }
+}
+  
+  .h4Text {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: monospace;
+    color: var(--black);
+  }
+  
+  /* Edit area */
+  .editArea {
+    display:flex;
+    align-items:center;
+    justify-content: space-evenly;
+    z-index: 2;
+  }
+  
+  /* Player area */
+  .playerArea {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 12px 40px 12px;
+  }
+  
+  /* small helpers */
+  .iconCenter { display:flex; align-items:center; justify-content:center; }
+  .emptyHistory { color: var(--white); text-align:center; padding: 12px 0; }
+  

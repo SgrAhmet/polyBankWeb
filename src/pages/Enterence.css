@@ -1,0 +1,106 @@
+.enterence-container {
+    background-color: #0b3d2e; /* colors.darkGreen */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  
+  .h1-text {
+    font-size: 32px;
+    color: #c4834f; /* colors.brown */
+    font-weight: 900;
+    font-family: monospace;
+    margin-bottom: 50px;
+  }
+  
+  .custom-btn {
+    padding: 15px;
+    border-radius: 30px;
+    margin: 10px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    font-family: monospace;
+
+  }
+  
+  .brown-btn {
+    background-color: #8b4513;
+    border-color: #8b4513;
+
+  }
+  
+  .green-btn {
+    background-color: #0b3d2e;
+    border-color: #0b3d2e;
+  }
+  
+  .btn-text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .footer {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .flag-button {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    /* background-color:var(--darkGreen); */
+    border: 2px solid #c4834f;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    /* padding: 4px; */
+  }
+  
+  .info-button {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .bottom-btn{
+    padding: 15px;
+    border-radius: 30px;
+    margin: 10px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    font-family: monospace;
+    background-color: #0b3d2e;
+    border-color: #c4834f;
+
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    /* border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px; */
+  }
+  

@@ -294,7 +294,7 @@ const Main = () => {
                   <div className="moneyCircle rightTop" />
                   <div className="moneyCircle leftBottom" />
                   <div className="moneyCircle rightBottom" />
-                  <div className="h4Text">{e}</div>
+                  <div className="moneyText">{e}</div>
                 </div>
               ))}
             </div>
@@ -314,7 +314,7 @@ const Main = () => {
                   <div className="moneyCircle rightTop" />
                   <div className="moneyCircle leftBottom" />
                   <div className="moneyCircle rightBottom" />
-                  <div className="h4Text">{e}</div>
+                  <div className="moneyText">{e}</div>
                 </div>
               ))}
             </div>

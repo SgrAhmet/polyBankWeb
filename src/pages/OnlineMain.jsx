@@ -254,6 +254,16 @@ const OnlineMain = () => {
     }
   };
 
+  const handleMouseDown = (e, i) => {
+    e.persist();
+    e.target.pressTimer = setTimeout(() => {
+      handleLongMoneyBill(e, i); // uzun basma olayı
+    }, 500); // 500ms basılı tutunca tetiklenir
+  };
+  
+  const handleMouseUp = (e) => {
+    clearTimeout(e.target.pressTimer);
+  };
   // UI
   return (
     <div
@@ -404,17 +414,20 @@ const OnlineMain = () => {
                     key={i}
                     className={styles.moneyBill}
                     onClick={() => handleMoneyBill(e)}
-                    onContextMenu={(ev) => {
-                      ev.preventDefault();
-                      handleLongMoneyBill(e, i);
-                    }}
-                    title={`${e} - ${t("longPressToEdit")}`}
+                    onMouseDown={(e) => handleMouseDown(e, i)}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
+                    // onContextMenu={(ev) => {
+                    //   ev.preventDefault();
+                    //   handleLongMoneyBill(e, i);
+                    // }}
+                    // title={`${e} - ${t("longPressToEdit")}`}
                   >
                     <div className={styles.moneyCircle} style={{ left: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ left: -10, bottom: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, bottom: -10 }} />
-                    <span className={styles.h4Text}>{e}</span>
+                    <span className={styles.moneyText}>{e}</span>
                   </button>
                 ))}
               </div>
@@ -425,17 +438,20 @@ const OnlineMain = () => {
                     key={i}
                     className={styles.moneyBill}
                     onClick={() => handleMoneyBill(e)}
-                    onContextMenu={(ev) => {
-                      ev.preventDefault();
-                      handleLongMoneyBill(e, i + 4);
-                    }}
-                    title={`${e} - ${t("longPressToEdit")}`}
+                    onMouseDown={(e) => handleMouseDown(e, i+4)}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
+                    // onContextMenu={(ev) => {
+                    //   ev.preventDefault();
+                    //   handleLongMoneyBill(e, i + 4);
+                    // }}
+                    // title={`${e} - ${t("longPressToEdit")}`}
                   >
                     <div className={styles.moneyCircle} style={{ left: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ left: -10, bottom: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, bottom: -10 }} />
-                    <span className={styles.h4Text}>{e}</span>
+                    <span className={styles.moneyText}>{e}</span>
                   </button>
                 ))}
               </div>

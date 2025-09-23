@@ -219,11 +219,12 @@
 }
 
 /* Para miktarı yazısı */
-.h4Text {
+.moneyText {
   font-size: 22px;
   font-weight: 600;
   font-family: monospace;
   color: var(--black);
+  user-select: none;
 }
 
 /* Küçük ekranlar için */
@@ -237,13 +238,13 @@
   }
 }
   
-  .h4Text {
+  /* .moneyText {
     font-size: 22px;
     font-weight: 600;
     font-family: monospace;
     color: var(--black);
   }
-  
+   */
   /* Edit area */
   .editArea {
     display:flex;

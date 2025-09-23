@@ -282,13 +282,15 @@ const Main = () => {
                   key={i}
                   onClick={() => handleMoneyBill(e)}
                   // onDoubleClick={() => handleLongMoneyBill(e, i)}
+                  // onMouseDown={(e) => handleMouseDown(e, i)}
+                  // onMouseUp={handleMouseUp}
+                  // onMouseLeave={handleMouseUp} 
                   onMouseDown={(e) => handleMouseDown(e, i)}
                   onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
-                  // onContextMenu={(ev) => {
-                  //   ev.preventDefault();
-                  //   handleLongMoneyBill(e, i);
-                  // }}
+                  onMouseLeave={handleMouseUp}
+                  onTouchStart={(e) => handleMouseDown(e, i)}   // mobil
+                  onTouchEnd={handleMouseUp}                    // mobil
+                  onTouchCancel={handleMouseUp}                 // mobil (parmak kayarsa iptal et)
                 >
                   <div className="moneyCircle leftTop" />
                   <div className="moneyCircle rightTop" />
@@ -306,9 +308,16 @@ const Main = () => {
                   key={i + 4}
                   onClick={() => handleMoneyBill(e)}
                   // onDoubleClick={() => handleLongMoneyBill(e, i + 4)}
+                  // onMouseDown={(e) => handleMouseDown(e, i+4)}
+                  // onMouseUp={handleMouseUp}
+                  // onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
+
                   onMouseDown={(e) => handleMouseDown(e, i+4)}
                   onMouseUp={handleMouseUp}
-                  onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
+                  onMouseLeave={handleMouseUp}
+                  onTouchStart={(e) => handleMouseDown(e, i+4)}   // mobil
+                  onTouchEnd={handleMouseUp}                    // mobil
+                  onTouchCancel={handleMouseUp}  
                 >
                   <div className="moneyCircle leftTop" />
                   <div className="moneyCircle rightTop" />

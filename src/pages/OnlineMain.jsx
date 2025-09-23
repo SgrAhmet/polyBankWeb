@@ -414,14 +414,17 @@ const OnlineMain = () => {
                     key={i}
                     className={styles.moneyBill}
                     onClick={() => handleMoneyBill(e)}
+
+                    // onMouseDown={(e) => handleMouseDown(e, i)}
+                    // onMouseUp={handleMouseUp}
+                    // onMouseLeave={handleMouseUp} 
+
                     onMouseDown={(e) => handleMouseDown(e, i)}
                     onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
-                    // onContextMenu={(ev) => {
-                    //   ev.preventDefault();
-                    //   handleLongMoneyBill(e, i);
-                    // }}
-                    // title={`${e} - ${t("longPressToEdit")}`}
+                    onMouseLeave={handleMouseUp}
+                    onTouchStart={(e) => handleMouseDown(e, i)}   // mobil
+                    onTouchEnd={handleMouseUp}                    // mobil
+                    onTouchCancel={handleMouseUp}                 // mobil (parmak kayarsa iptal et)
                   >
                     <div className={styles.moneyCircle} style={{ left: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
@@ -438,14 +441,17 @@ const OnlineMain = () => {
                     key={i}
                     className={styles.moneyBill}
                     onClick={() => handleMoneyBill(e)}
+
+                    // onMouseDown={(e) => handleMouseDown(e, i+4)}
+                    // onMouseUp={handleMouseUp}
+                    // onMouseLeave={handleMouseUp} 
+
                     onMouseDown={(e) => handleMouseDown(e, i+4)}
                     onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
-                    // onContextMenu={(ev) => {
-                    //   ev.preventDefault();
-                    //   handleLongMoneyBill(e, i + 4);
-                    // }}
-                    // title={`${e} - ${t("longPressToEdit")}`}
+                    onMouseLeave={handleMouseUp}
+                    onTouchStart={(e) => handleMouseDown(e, i+4)}   // mobil
+                    onTouchEnd={handleMouseUp}                    // mobil
+                    onTouchCancel={handleMouseUp}                 // mobil (parmak kayarsa iptal et)
                   >
                     <div className={styles.moneyCircle} style={{ left: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />

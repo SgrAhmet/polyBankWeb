@@ -64,7 +64,8 @@ const PlayerListItem = ({
             <span className="pli-text">$</span>
           </div>
         ) : (
-          <span className="pli-text">{money} $</span>
+          // <span className="pli-text">{money} $</span>
+          <span className="pli-text">{money.toString().length >= 7 ? `${money / 1000000}m` : money.toString().length >= 5 ? `${money / 1000}k` : money } $</span>
         )}
       </div>
 

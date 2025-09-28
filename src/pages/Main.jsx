@@ -42,7 +42,7 @@ const Main = () => {
       if (offlineMoneyBills) {
         setMoneybills(JSON.parse(offlineMoneyBills));
       } else {
-        setMoneybills([10, 20, 50, 100, 200, 500, 1000, 5000]);
+        setMoneybills([10000, 20000, 50000, 100000, 200000, 500000, 1000000, 5000000]);
       }
     } catch (err) {
       console.error("localStorage read error", err);
@@ -161,14 +161,18 @@ const Main = () => {
   const handleLongMoneyBill = (value, idx) => {
     // Web'de double click ile düzenleme tetikliyoruz
     if (moneyQuantity !== "") {
-      if (moneyQuantity.toString().length < 6) {
+      if (moneyQuantity.toString().length < 10) {
         const newMoneyBills = [...moneybills];
         newMoneyBills[idx] = Number(moneyQuantity);
         setMoneybills(newMoneyBills);
         setMoneyQuantity("");
-      } else {
+      }
+         else {
         window.alert(`${t("max5Digit") || "Max 5 digits"}`);
       }
+
+
+      console.log(moneyQuantity.length)
     }
   };
 
@@ -183,6 +187,7 @@ const Main = () => {
   const handleMouseUp = (e) => {
     clearTimeout(e.target.pressTimer);
   };
+
 
   return (
     <div className="main-container">
@@ -261,7 +266,8 @@ const Main = () => {
             <input
               className="input"
               placeholder={t("enterMoney")}
-              value={moneyQuantity.toString()}
+              // value={moneyQuantity.toString()}
+              value={moneyQuantity.toString().length >= 7 ? `${(moneyQuantity / 1000000)}m` : moneyQuantity.toString().length >= 5 ? `${(moneyQuantity / 1000)}k` : moneyQuantity.toString() }
               onChange={(ev) => {
                 const fixed = ev.target.value.replace(",", ".");
                 const valid = /^(\d+(\.\d*)?)?$/.test(fixed);
@@ -296,7 +302,8 @@ const Main = () => {
                   <div className="moneyCircle rightTop" />
                   <div className="moneyCircle leftBottom" />
                   <div className="moneyCircle rightBottom" />
-                  <div className="moneyText">{e}</div>
+                  <div className="moneyText">{e.toString().length >= 7 ? `${(e / 1000000)}m` : e.toString().length >= 5 ? `${(e / 1000)}k` : e }</div>
+
                 </div>
               ))}
             </div>
@@ -323,7 +330,7 @@ const Main = () => {
                   <div className="moneyCircle rightTop" />
                   <div className="moneyCircle leftBottom" />
                   <div className="moneyCircle rightBottom" />
-                  <div className="moneyText">{e}</div>
+                  <div className="moneyText">{e.toString().length >= 7 ? `${(e / 1000000)}m` : e.toString().length >= 5 ? `${(e / 1000)}k` : e }</div>
                 </div>
               ))}
             </div>

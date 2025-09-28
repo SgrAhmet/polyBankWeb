@@ -243,7 +243,7 @@ const OnlineMain = () => {
 
   const handleLongMoneyBill = (val, idx) => {
     if (moneyQuantity !== "") {
-      if (moneyQuantity.toString().length < 6) {
+      if (moneyQuantity.toString().length < 10) {
         const newMoneyBills = [...moneybills];
         newMoneyBills[idx] = Number(moneyQuantity);
         setMoneybills(newMoneyBills);
@@ -390,7 +390,10 @@ const OnlineMain = () => {
               <input
                 className={styles.input}
                 placeholder={t("enterMoney")}
-                value={moneyQuantity}
+                // value={moneyQuantity}
+              // value={moneyQuantity.toString().length >= 7 ? `${moneyQuantity / 1000000}m` : moneyQuantity.toString().length >= 5 ? `${moneyQuantity / 1000}k` : moneyQuantity.toString() }
+              value={moneyQuantity.toString().length >= 7 ? `${(moneyQuantity / 1000000)}m` : moneyQuantity.toString().length >= 5 ? `${(moneyQuantity / 1000)}k` : moneyQuantity.toString() }
+
                 onChange={(ev) => {
                   const fixed = ev.target.value.replace(",", ".");
                   const valid = fixed.match(/^(\d+(\.\d*)?)?$/);
@@ -430,7 +433,9 @@ const OnlineMain = () => {
                     <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ left: -10, bottom: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, bottom: -10 }} />
-                    <span className={styles.moneyText}>{e}</span>
+                    <span className={styles.moneyText}>{e.toString().length >= 7 ? `${e / 1000000}m` : e.toString().length >= 5 ? `${e / 1000}k` : e }</span>
+              
+
                   </button>
                 ))}
               </div>
@@ -457,7 +462,8 @@ const OnlineMain = () => {
                     <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
                     <div className={styles.moneyCircle} style={{ left: -10, bottom: -10 }} />
                     <div className={styles.moneyCircle} style={{ right: -10, bottom: -10 }} />
-                    <span className={styles.moneyText}>{e}</span>
+                    <span className={styles.moneyText}>{e.toString().length >= 7 ? `${e / 1000000}m` : e.toString().length >= 5 ? `${e / 1000}k` : e }</span>
+
                   </button>
                 ))}
               </div>

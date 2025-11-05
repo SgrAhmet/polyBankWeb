@@ -37,7 +37,7 @@ const OnlineMain = () => {
       ? spectatorFromParams === "true"
       : false;
 
-      console.log(spectator)
+  console.log(spectator);
 
   // component state
   const [isEditVisible, setIsEditVisible] = useState(false);
@@ -260,7 +260,7 @@ const OnlineMain = () => {
       handleLongMoneyBill(e, i); // uzun basma olayı
     }, 500); // 500ms basılı tutunca tetiklenir
   };
-  
+
   const handleMouseUp = (e) => {
     clearTimeout(e.target.pressTimer);
   };
@@ -325,7 +325,10 @@ const OnlineMain = () => {
             <div className={styles.modalBody}>
               {Array.isArray(history) &&
                 history.map((e, i) => {
-                  if (e.quantity === "newGamer" || e.quantity === "deleteGamer") {
+                  if (
+                    e.quantity === "newGamer" ||
+                    e.quantity === "deleteGamer"
+                  ) {
                     return (
                       <div className={styles.modalItem} key={i}>
                         <div className={styles.modalItemSep}>
@@ -361,7 +364,9 @@ const OnlineMain = () => {
                         <span>
                           {e.negatif === "Banka" ? t("bank") : e.negatif}
                         </span>
-                        <span>{e.quantity} $</span>
+                        <span>{e.quantity.toString().length >= 7 ? `${e.quantity / 1000000}m` : e.quantity.toString().length >= 5 ? `${e.quantity / 1000}k` : e.quantity } $</span>
+
+                        {/* <span>{e.quantity} $</span> */}
                         <FaArrowRight size={18} color={colors.darkGreen} />
                         <span>
                           {e.pozitif === "Banka" ? t("bank") : e.pozitif}
@@ -391,9 +396,14 @@ const OnlineMain = () => {
                 className={styles.input}
                 placeholder={t("enterMoney")}
                 // value={moneyQuantity}
-              // value={moneyQuantity.toString().length >= 7 ? `${moneyQuantity / 1000000}m` : moneyQuantity.toString().length >= 5 ? `${moneyQuantity / 1000}k` : moneyQuantity.toString() }
-              value={moneyQuantity.toString().length >= 7 ? `${(moneyQuantity / 1000000)}m` : moneyQuantity.toString().length >= 5 ? `${(moneyQuantity / 1000)}k` : moneyQuantity.toString() }
-
+                // value={moneyQuantity.toString().length >= 7 ? `${moneyQuantity / 1000000}m` : moneyQuantity.toString().length >= 5 ? `${moneyQuantity / 1000}k` : moneyQuantity.toString() }
+                value={
+                  moneyQuantity.toString().length >= 7
+                    ? `${moneyQuantity / 1000000}m`
+                    : moneyQuantity.toString().length >= 5
+                    ? `${moneyQuantity / 1000}k`
+                    : moneyQuantity.toString()
+                }
                 onChange={(ev) => {
                   const fixed = ev.target.value.replace(",", ".");
                   const valid = fixed.match(/^(\d+(\.\d*)?)?$/);
@@ -417,25 +427,40 @@ const OnlineMain = () => {
                     key={i}
                     className={styles.moneyBill}
                     onClick={() => handleMoneyBill(e)}
-
                     // onMouseDown={(e) => handleMouseDown(e, i)}
                     // onMouseUp={handleMouseUp}
-                    // onMouseLeave={handleMouseUp} 
+                    // onMouseLeave={handleMouseUp}
 
                     onMouseDown={(e) => handleMouseDown(e, i)}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
-                    onTouchStart={(e) => handleMouseDown(e, i)}   // mobil
-                    onTouchEnd={handleMouseUp}                    // mobil
-                    onTouchCancel={handleMouseUp}                 // mobil (parmak kayarsa iptal et)
+                    onTouchStart={(e) => handleMouseDown(e, i)} // mobil
+                    onTouchEnd={handleMouseUp} // mobil
+                    onTouchCancel={handleMouseUp} // mobil (parmak kayarsa iptal et)
                   >
-                    <div className={styles.moneyCircle} style={{ left: -10, top: -10 }} />
-                    <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
-                    <div className={styles.moneyCircle} style={{ left: -10, bottom: -10 }} />
-                    <div className={styles.moneyCircle} style={{ right: -10, bottom: -10 }} />
-                    <span className={styles.moneyText}>{e.toString().length >= 7 ? `${e / 1000000}m` : e.toString().length >= 5 ? `${e / 1000}k` : e }</span>
-              
-
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ left: -10, top: -10 }}
+                    />
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ right: -10, top: -10 }}
+                    />
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ left: -10, bottom: -10 }}
+                    />
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ right: -10, bottom: -10 }}
+                    />
+                    <span className={styles.moneyText}>
+                      {e.toString().length >= 7
+                        ? `${e / 1000000}m`
+                        : e.toString().length >= 5
+                        ? `${e / 1000}k`
+                        : e}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -446,24 +471,40 @@ const OnlineMain = () => {
                     key={i}
                     className={styles.moneyBill}
                     onClick={() => handleMoneyBill(e)}
-
                     // onMouseDown={(e) => handleMouseDown(e, i+4)}
                     // onMouseUp={handleMouseUp}
-                    // onMouseLeave={handleMouseUp} 
+                    // onMouseLeave={handleMouseUp}
 
-                    onMouseDown={(e) => handleMouseDown(e, i+4)}
+                    onMouseDown={(e) => handleMouseDown(e, i + 4)}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
-                    onTouchStart={(e) => handleMouseDown(e, i+4)}   // mobil
-                    onTouchEnd={handleMouseUp}                    // mobil
-                    onTouchCancel={handleMouseUp}                 // mobil (parmak kayarsa iptal et)
+                    onTouchStart={(e) => handleMouseDown(e, i + 4)} // mobil
+                    onTouchEnd={handleMouseUp} // mobil
+                    onTouchCancel={handleMouseUp} // mobil (parmak kayarsa iptal et)
                   >
-                    <div className={styles.moneyCircle} style={{ left: -10, top: -10 }} />
-                    <div className={styles.moneyCircle} style={{ right: -10, top: -10 }} />
-                    <div className={styles.moneyCircle} style={{ left: -10, bottom: -10 }} />
-                    <div className={styles.moneyCircle} style={{ right: -10, bottom: -10 }} />
-                    <span className={styles.moneyText}>{e.toString().length >= 7 ? `${e / 1000000}m` : e.toString().length >= 5 ? `${e / 1000}k` : e }</span>
-
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ left: -10, top: -10 }}
+                    />
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ right: -10, top: -10 }}
+                    />
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ left: -10, bottom: -10 }}
+                    />
+                    <div
+                      className={styles.moneyCircle}
+                      style={{ right: -10, bottom: -10 }}
+                    />
+                    <span className={styles.moneyText}>
+                      {e.toString().length >= 7
+                        ? `${e / 1000000}m`
+                        : e.toString().length >= 5
+                        ? `${e / 1000}k`
+                        : e}
+                    </span>
                   </button>
                 ))}
               </div>

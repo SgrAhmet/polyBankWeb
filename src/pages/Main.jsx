@@ -42,7 +42,9 @@ const Main = () => {
       if (offlineMoneyBills) {
         setMoneybills(JSON.parse(offlineMoneyBills));
       } else {
-        setMoneybills([10000, 20000, 50000, 100000, 200000, 500000, 1000000, 5000000]);
+        setMoneybills([
+          10000, 20000, 50000, 100000, 200000, 500000, 1000000, 5000000,
+        ]);
       }
     } catch (err) {
       console.error("localStorage read error", err);
@@ -72,7 +74,11 @@ const Main = () => {
     if (newGamerName.trim() !== "") {
       setGamers([...gamers, { name: newGamerName.trim(), money: 0 }]);
       setHistory([
-        { pozitif: newGamerName.trim(), negatif: "Banka", quantity: "newGamer" },
+        {
+          pozitif: newGamerName.trim(),
+          negatif: "Banka",
+          quantity: "newGamer",
+        },
         ...history,
       ]);
       setNewGamerName("");
@@ -144,7 +150,9 @@ const Main = () => {
   };
 
   const handleReset = () => {
-    const ok = window.confirm(`${t("areYouSureToResetGame") || "Are you sure?"}`);
+    const ok = window.confirm(
+      `${t("areYouSureToResetGame") || "Are you sure?"}`
+    );
     if (ok) resetGame();
   };
 
@@ -166,16 +174,13 @@ const Main = () => {
         newMoneyBills[idx] = Number(moneyQuantity);
         setMoneybills(newMoneyBills);
         setMoneyQuantity("");
-      }
-         else {
+      } else {
         window.alert(`${t("max5Digit") || "Max 5 digits"}`);
       }
 
-
-      console.log(moneyQuantity.length)
+      console.log(moneyQuantity.length);
     }
   };
-
 
   const handleMouseDown = (e, i) => {
     e.persist();
@@ -183,20 +188,26 @@ const Main = () => {
       handleLongMoneyBill(e, i); // uzun basma olayı
     }, 500); // 500ms basılı tutunca tetiklenir
   };
-  
+
   const handleMouseUp = (e) => {
     clearTimeout(e.target.pressTimer);
   };
-
 
   return (
     <div className="main-container">
       {/* Banner */}
       <div className="banner">
-        <div className="title">{/* H1 */}<span className="h1Text">PolyBank</span></div>
+        <div className="title">
+          {/* H1 */}
+          <span className="h1Text">PolyBank</span>
+        </div>
 
         <div className="bannerBtnArea">
-          <button className="iconBtn" onClick={handleHistory} title={t("history")}>
+          <button
+            className="iconBtn"
+            onClick={handleHistory}
+            title={t("history")}
+          >
             <FaHistory size={22} color={colors.white} />
           </button>
 
@@ -212,8 +223,14 @@ const Main = () => {
             <FaUndoAlt size={20} color={colors.white} />
           </button>
 
-          <button className="iconBtn" onClick={() => setIsEditVisible(!isEditVisible)}>
-            <FaPencilAlt size={20} color={isEditVisible ? colors.lightGreen : colors.white} />
+          <button
+            className="iconBtn"
+            onClick={() => setIsEditVisible(!isEditVisible)}
+          >
+            <FaPencilAlt
+              size={20}
+              color={isEditVisible ? colors.lightGreen : colors.white}
+            />
           </button>
         </div>
       </div>
@@ -222,32 +239,47 @@ const Main = () => {
       {modalVisible && (
         <div className="modalOverlay" onClick={() => setModalVisible(false)}>
           <div className="modalCard" onClick={(e) => e.stopPropagation()}>
-            <button className="modalClose" onClick={() => setModalVisible(false)}>
+            <button
+              className="modalClose"
+              onClick={() => setModalVisible(false)}
+            >
               ✕
             </button>
 
             <div className="modalBody">
-              {history.length === 0 && <div className="emptyHistory">{t("noHistory") || "No history"}</div>}
+              {history.length === 0 && (
+                <div className="emptyHistory">
+                  {t("noHistory") || "No history"}
+                </div>
+              )}
               {history.map((e, i) => {
                 if (e.quantity === "newGamer" || e.quantity === "deleteGamer") {
                   return (
                     <div className="modalItem" key={i}>
-                      <div className="modalItemSep">{e.negatif === "Banka" ? t("bank") : e.negatif}</div>
-                      <div className="modalItemSep iconCenter" style={{ width: "15%" }}>
+                      <div className="modalItemSep">
+                        {e.negatif === "Banka" ? t("bank") : e.negatif}
+                      </div>
+                      <div
+                        className="modalItemSep iconCenter"
+                        style={{ width: "15%" }}
+                      >
                         {e.quantity === "newGamer" ? (
                           <IoPersonAdd size={28} color={colors.darkGreen} />
                         ) : (
                           <IoPersonRemove size={28} color={colors.darkGreen} />
                         )}
                       </div>
-                      <div className="modalItemSep">{e.pozitif === "Banka" ? t("bank") : e.pozitif}</div>
+                      <div className="modalItemSep">
+                        {e.pozitif === "Banka" ? t("bank") : e.pozitif}
+                      </div>
                     </div>
                   );
                 } else {
                   return (
                     <div className="modalItem" key={i}>
                       <div>{e.negatif === "Banka" ? t("bank") : e.negatif}</div>
-                      <div>{e.quantity} $</div>
+                      <div>{e.quantity.toString().length >= 7 ? `${e.quantity / 1000000}m` : e.quantity.toString().length >= 5 ? `${e.quantity / 1000}k` : e.quantity } $</div>
+                      {/* <div>{e.quantity} $</div> */}
                       <FaLongArrowAltRight size={20} color={colors.darkGreen} />
                       <div>{e.pozitif === "Banka" ? t("bank") : e.pozitif}</div>
                     </div>
@@ -267,15 +299,29 @@ const Main = () => {
               className="input"
               placeholder={t("enterMoney")}
               // value={moneyQuantity.toString()}
-              value={moneyQuantity.toString().length >= 7 ? `${(moneyQuantity / 1000000)}m` : moneyQuantity.toString().length >= 5 ? `${(moneyQuantity / 1000)}k` : moneyQuantity.toString() }
+              value={
+                moneyQuantity.toString().length >= 7
+                  ? moneyQuantity / 1000000 + "m"
+                  : moneyQuantity.toString().length >= 5
+                  ? moneyQuantity / 1000 + "k"
+                  : moneyQuantity.toString()
+              }
               onChange={(ev) => {
                 const fixed = ev.target.value.replace(",", ".");
                 const valid = /^(\d+(\.\d*)?)?$/.test(fixed);
-                if (valid || fixed === "") setMoneyQuantity(fixed);
+                if (valid || fixed === "") {
+                  setMoneyQuantity(fixed);
+                }
               }}
               inputMode="decimal"
+
             />
-            <button className="iconBtn" onClick={transferMoney} title={t("transfer")}>
+
+            <button
+              className="iconBtn"
+              onClick={transferMoney}
+              title={t("transfer")}
+            >
               <FaMoneyBillWave size={26} color={colors.white} />
             </button>
           </div>
@@ -290,20 +336,25 @@ const Main = () => {
                   // onDoubleClick={() => handleLongMoneyBill(e, i)}
                   // onMouseDown={(e) => handleMouseDown(e, i)}
                   // onMouseUp={handleMouseUp}
-                  // onMouseLeave={handleMouseUp} 
+                  // onMouseLeave={handleMouseUp}
                   onMouseDown={(e) => handleMouseDown(e, i)}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  onTouchStart={(e) => handleMouseDown(e, i)}   // mobil
-                  onTouchEnd={handleMouseUp}                    // mobil
-                  onTouchCancel={handleMouseUp}                 // mobil (parmak kayarsa iptal et)
+                  onTouchStart={(e) => handleMouseDown(e, i)} // mobil
+                  onTouchEnd={handleMouseUp} // mobil
+                  onTouchCancel={handleMouseUp} // mobil (parmak kayarsa iptal et)
                 >
                   <div className="moneyCircle leftTop" />
                   <div className="moneyCircle rightTop" />
                   <div className="moneyCircle leftBottom" />
                   <div className="moneyCircle rightBottom" />
-                  <div className="moneyText">{e.toString().length >= 7 ? `${(e / 1000000)}m` : e.toString().length >= 5 ? `${(e / 1000)}k` : e }</div>
-
+                  <div className="moneyText">
+                    {e.toString().length >= 7
+                      ? `${e / 1000000}m`
+                      : e.toString().length >= 5
+                      ? `${e / 1000}k`
+                      : e}
+                  </div>
                 </div>
               ))}
             </div>
@@ -319,18 +370,24 @@ const Main = () => {
                   // onMouseUp={handleMouseUp}
                   // onMouseLeave={handleMouseUp} // fare çekilirse de iptal et
 
-                  onMouseDown={(e) => handleMouseDown(e, i+4)}
+                  onMouseDown={(e) => handleMouseDown(e, i + 4)}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseUp}
-                  onTouchStart={(e) => handleMouseDown(e, i+4)}   // mobil
-                  onTouchEnd={handleMouseUp}                    // mobil
-                  onTouchCancel={handleMouseUp}  
+                  onTouchStart={(e) => handleMouseDown(e, i + 4)} // mobil
+                  onTouchEnd={handleMouseUp} // mobil
+                  onTouchCancel={handleMouseUp}
                 >
                   <div className="moneyCircle leftTop" />
                   <div className="moneyCircle rightTop" />
                   <div className="moneyCircle leftBottom" />
                   <div className="moneyCircle rightBottom" />
-                  <div className="moneyText">{e.toString().length >= 7 ? `${(e / 1000000)}m` : e.toString().length >= 5 ? `${(e / 1000)}k` : e }</div>
+                  <div className="moneyText">
+                    {e.toString().length >= 7
+                      ? `${e / 1000000}m`
+                      : e.toString().length >= 5
+                      ? `${e / 1000}k`
+                      : e}
+                  </div>
                 </div>
               ))}
             </div>

@@ -17,9 +17,15 @@ import { db } from "../firebaseConfig";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { useLocation, useParams } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
+
 import styles from "./OnlineMain.module.css"; // CSS'i sonra sağlayacaksın
 
 const OnlineMain = () => {
+
+    const navigate = useNavigate();
+  
   // roomId ve spectator'ü önce location.state (navigate ile gönderirsen) den al,
   // yoksa URL paramı (useParams) ile al.
   const location = useLocation();
@@ -27,7 +33,18 @@ const OnlineMain = () => {
   const stateRoom = location?.state?.roomId;
   const stateSpectator = location?.state?.spectator;
 
+
+  // console.log("params ")
+  // console.log(params.roomId);
+
   const roomId = stateRoom ?? params.roomId ?? null;
+
+
+  // Eğer roomId null ise home sayfasına atsın geri döndürsün kullanıcıyı
+
+  if (roomId == null) {
+    navigate("/")
+  }
   // spectator olabilir boolean ya da "true"/"false" string; normalize edelim
   const spectatorFromParams = params.spectator;
   const spectator =
